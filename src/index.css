@@ -12,4 +12,40 @@
   html:not(.dark) {
     color-scheme: light;
   }
+
+  body {
+    @apply bg-kertas text-tinta font-sans antialiased;
+  }
+  .dark body {
+    @apply bg-arang text-[#EFE9DC];
+  }
+
+  ::selection {
+    background: #D9481C;
+    color: #FFFDF8;
+  }
+
+  /* Focus ring terlihat di semua kontrol interaktif (a11y). */
+  :focus-visible {
+    outline: 2px solid #D9481C;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Angka data tabular agar kolom angka tidak goyang. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Hormati prefers-reduced-motion: matikan semua animasi/transisi. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

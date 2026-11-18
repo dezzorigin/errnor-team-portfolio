@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diagram — ERRNOR Team Portfolio / LUNAS</title>
+<style>
+  body { font-family: Georgia, serif; background: #F6F1E7; color: #211D19; max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  h2 { font-size: 20px; margin: 48px 0 8px; }
+  p { font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: #211D19cc; max-width: 70ch; }
+  figure { margin: 16px 0 0; background: #FFFDF8; border: 1px solid #E3DACA; border-radius: 6px; padding: 20px; overflow-x: auto; }
+  figcaption { font-family: system-ui, sans-serif; font-size: 13px; color: #211D19aa; margin-top: 12px; }
+  svg text { font-family: system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Diagram — ERRNOR Team Portfolio / LUNAS</h1>
+<p>Diagram arsitektur, alur data simulasi, dan state carousel. Dibuat sebagai
+HTML + SVG (bukan Mermaid). Lihat <code>docs/architecture.md</code> untuk
+penjelasan teksnya.</p>
+
+<h2>1. Arsitektur deploy</h2>
+<figure>
+<svg width="860" height="260" viewBox="0 0 860 260" role="img" aria-label="Diagram arsitektur deploy">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6E1423" />
+    </marker>
+  </defs>
+  <rect x="20" y="90" width="170" height="80" rx="6" fill="#FFFDF8" stroke="#211D19" stroke-width="1.5" />
+  <text x="105" y="122" text-anchor="middle" font-size="14" font-weight="700">Pengunjung</text>
+  <text x="105" y="144" text-anchor="middle" font-size="12" fill="#211D19aa">browser / ponsel</text>
+
+  <rect x="290" y="40" width="240" height="180" rx="6" fill="#6E1423" />
+  <text x="410" y="70" text-anchor="middle" font-size="14" font-weight="700" fill="#F6F1E7">Cloudflare Pages</text>
+  <text x="410" y="92" text-anchor="middle" font-size="12" fill="#F6F1E7aa">errnor-team-portfolio.pages.dev</text>
+  <rect x="310" y="110" width="200" height="30" rx="4" fill="#FFFDF8" />
+  <text x="410" y="129" text-anchor="middle" font-size="12" font-weight="600">index.html</text>
+  <rect x="310" y="148" width="200" height="30" rx="4" fill="#FFFDF8" />
+  <text x="410" y="167" text-anchor="middle" font-size="12" font-weight="600">assets/index-*.js + *.css</text>
+  <rect x="310" y="186" width="200" height="30" rx="4" fill="#FFFDF8" />
+  <text x="410" y="205" text-anchor="middle" font-size="12" font-weight="600">foto tim + logo (public/)</text>
+
+  <rect x="640" y="90" width="200" height="80" rx="6" fill="#FFFDF8" stroke="#211D19" stroke-width="1.5" />
+  <text x="740" y="122" text-anchor="middle" font-size="14" font-weight="700">Google Fonts</text>
+  <text x="740" y="144" text-anchor="middle" font-size="12" fill="#211D19aa">Fraunces + Public Sans</text>
+  <text x="740" y="162" text-anchor="middle" font-size="12" fill="#211D19aa">(opsional — ada fallback)</text>
+
+  <line x1="190" y1="130" x2="288" y2="130" stroke="#6E1423" stroke-width="2" marker-end="url(#arr)" />
+  <line x1="530" y1="110" x2="638" y2="120" stroke="#6E1423" stroke-width="2" marker-end="url(#arr)" />
+  <text x="240" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#6E1423">HTTPS</text>
+</svg>
+<figcaption>Gambar 1 — Situs statis murni: tanpa backend, tanpa API. Satu-satunya
+pihak ketiga adalah Google Fonts, dan situs tetap berfungsi bila font gagal dimuat.</figcaption>
+</figure>
+
+<h2>2. Alur data simulasi playground</h2>
+<figure>
+<svg width="860" height="210" viewBox="0 0 860 210" role="img" aria-label="Diagram alur data simulasi">
+  <defs>
+    <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#177245" />
+    </marker>
+  </defs>
+  <rect x="20" y="70" width="150" height="70" rx="6" fill="#FFFDF8" stroke="#211D19" stroke-width="1.5" />
+  <text x="95" y="100" text-anchor="middle" font-size="13" font-weight="700">Slider pendapatan</text>
+  <text x="95" y="120" text-anchor="middle" font-size="12">Rp 5–50 jt (15)</text>
+
+  <rect x="20" y="150" width="150" height="0" fill="none" />
+  <rect x="230" y="70" width="150" height="70" rx="6" fill="#FFFDF8" stroke="#211D19" stroke-width="1.5" />
+  <text x="305" y="100" text-anchor="middle" font-size="13" font-weight="700">Slider utang</text>
+  <text x="305" y="120" text-anchor="middle" font-size="12">Rp 1–30 jt (5)</text>
+
+  <rect x="440" y="70" width="170" height="70" rx="6" fill="#177245" />
+  <text x="525" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFDF8">surplus = max(0, P − U)</text>
+  <text x="525" y="120" text-anchor="middle" font-size="12" fill="#FFFDF8">invested = surplus × 0,5</text>
+
+  <rect x="670" y="70" width="170" height="70" rx="6" fill="#FFFDF8" stroke="#177245" stroke-width="2" />
+  <text x="755" y="100" text-anchor="middle" font-size="13" font-weight="700">aset 12 bln</text>
+  <text x="755" y="120" text-anchor="middle" font-size="12">invested × 12 × 1,08</text>
+
+  <line x1="170" y1="105" x2="228" y2="105" stroke="#177245" stroke-width="2" marker-end="url(#arr2)" />
+  <line x1="380" y1="105" x2="438" y2="105" stroke="#177245" stroke-width="2" marker-end="url(#arr2)" />
+  <line x1="610" y1="105" x2="668" y2="105" stroke="#177245" stroke-width="2" marker-end="url(#arr2)" />
+
+  <text x="430" y="180" text-anchor="middle" font-size="13">Bila surplus ≤ 0 → tampil "Defisit Finansial", bukan angka. Semua angka
+  dilabeli simulasi contoh.</text>
+</svg>
+<figcaption>Gambar 2 — Dua slider → satu rumus → dua kartu struk (hero dan
+playground memakai state yang sama).</figcaption>
+</figure>
+
+<h2>3. State carousel tim</h2>
+<figure>
+<svg width="860" height="230" viewBox="0 0 860 230" role="img" aria-label="Diagram state carousel tim">
+  <defs>
+    <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#D9481C" />
+    </marker>
+  </defs>
+  <rect x="20" y="80" width="180" height="70" rx="6" fill="#FFFDF8" stroke="#211D19" stroke-width="1.5" />
+  <text x="110" y="110" text-anchor="middle" font-size="13" font-weight="700">Kartu tengah aktif</text>
+  <text x="110" y="130" text-anchor="middle" font-size="12">activeIdx = 0..3</text>
+
+  <rect x="330" y="30" width="200" height="60" rx="6" fill="#FFFDF8" stroke="#D9481C" stroke-width="1.5" />
+  <text x="430" y="56" text-anchor="middle" font-size="13" font-weight="700">Auto-rotate tiap 4 dtk</text>
+  <text x="430" y="76" text-anchor="middle" font-size="12">setInterval (berhenti saat modal)</text>
+
+  <rect x="330" y="140" width="200" height="60" rx="6" fill="#FFFDF8" stroke="#D9481C" stroke-width="1.5" />
+  <text x="430" y="166" text-anchor="middle" font-size="13" font-weight="700">Klik kiri / kanan / dot</text>
+  <text x="430" y="186" text-anchor="middle" font-size="12">prev / next / setActiveIdx</text>
+
+  <rect x="660" y="80" width="180" height="70" rx="6" fill="#6E1423" />
+  <text x="750" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#F6F1E7">Modal anggota</text>
+  <text x="750" y="130" text-anchor="middle" font-size="12" fill="#F6F1E7aa">klik kartu tengah</text>
+
+  <line x1="200" y1="100" x2="328" y2="65" stroke="#D9481C" stroke-width="2" marker-end="url(#arr3)" />
+  <line x1="200" y1="125" x2="328" y2="165" stroke="#D9481C" stroke-width="2" marker-end="url(#arr3)" />
+  <line x1="530" y1="60" x2="200" y2="90" stroke="#D9481C" stroke-width="2" marker-end="url(#arr3)" />
+  <line x1="530" y1="170" x2="200" y2="120" stroke="#D9481C" stroke-width="2" marker-end="url(#arr3)" />
+  <line x1="200" y1="115" x2="658" y2="115" stroke="#D9481C" stroke-width="2" marker-end="url(#arr3)" />
+</svg>
+<figcaption>Gambar 3 — Carousel: satu indeks aktif, tiga cara berpindah, klik
+kartu tengah membuka modal (dan menghentikan auto-rotate).</figcaption>
+</figure>
+</body>
+</html>
